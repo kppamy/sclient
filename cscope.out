@@ -1,0 +1,1460 @@
+cscope 15 $HOME/programs/sclient -q 0000000107 0000007131
+	@connect.c
+
+9 
+	~<°dlib.h
+>
+
+10 
+	~<sys/ty≥s.h
+>
+
+11 
+	~<°dio.h
+>
+
+12 
+	~<î∫o.h
+>
+
+13 
+	~<sys/sockë.h
+>
+
+14 
+	~<√töë/ö.h
+>
+
+15 
+	~<°rög.h
+>
+
+17 
+	#BUFF_SIZE
+ 1024
+
+	)
+
+19 
+	$maö
+()
+
+21 
+cfd
+;
+
+22 
+ªcbyãs
+;
+
+23 
+sö_size
+;
+
+24 
+buf„r
+[
+BUFF_SIZE
+]={0};
+
+25 
+sockaddr_ö
+ 
+s_add
+,
+c_add
+;
+
+26 
+p‹äum
+=3001;
+
+28 
+	`¥ötf
+("Hello,welcomeÅo client !\r\n");
+
+30 
+cfd
+ = 
+	`sockë
+(
+AF_INET
+, 
+SOCK_STREAM
+, 0);
+
+31 if(-1 =
+cfd
+)
+
+33 
+	`¥ötf
+("socket fail ! \r\n");
+
+37 
+	`¥ötf
+("socket ok !\r\n");
+
+39 
+	`bzîo
+(&
+s_add
+,(
+sockaddr_ö
+));
+
+40 
+s_add
+.
+sö_Ámûy
+=
+AF_INET
+;
+
+41 
+s_add
+.
+sö_addr
+.
+s_addr
+
+	`öë_addr
+("127.0.0.1");
+
+42 
+s_add
+.
+sö_p‹t
+ =
+	`ht⁄s
+(
+p‹äum
+);
+
+43 
+	`¥ötf
+("s_add∏%d ,p‹à: %d\r\n",
+s_add
+.
+sö_addr
+.
+s_addr
+,s_add.
+sö_p‹t
+);
+
+46 if(-1 =
+	`c⁄√˘
+(
+cfd
+,(
+sockaddr
+ *)(&
+s_add
+), (sockaddr)))
+
+48 
+	`¥ötf
+("connect fail !\r\n");
+
+52 
+	`¥ötf
+("connect ok !\r\n");
+
+54 if(-1 =(
+ªcbyãs
+ = 
+	`ªad
+(
+cfd
+,
+buf„r
+,1024)))
+
+56 
+	`¥ötf
+("read data fail !\r\n");
+
+60 
+	`¥ötf
+("read ok\r\nREC:\r\n");
+
+62 
+buf„r
+[
+ªcbyãs
+]='\0';
+
+63 
+	`¥ötf
+("%s\r\n",
+buf„r
+);
+
+65 
+	`¥ötf
+("send messageÅo ser2net : \n");
+
+67 
+¶öe
+[
+BUFF_SIZE
+]={0};
+
+68 
+	`fgës
+(
+¶öe
+,
+BUFF_SIZE
+,
+°dö
+);
+
+70 if(
+	`£nd
+(
+cfd
+,
+¶öe
+,
+	`°æí
+(sline),0)<0)
+
+72 
+	`¥ötf
+("£nd msg wr⁄gÉº‹: %s“o:%d)\n",
+	`°ªº‹
+(
+î∫o
+),errno);
+
+73 
+	`exô
+(0);
+
+76 
+	`gëch¨
+();
+
+77 
+	`˛o£
+(
+cfd
+);
+
+80 
+	}
+}
+
+	@serCom.c
+
+8 
+	~<°dio.h
+>
+
+10 
+	~<sys/ty≥s.h
+>
+
+12 
+	~<sys/°©.h
+>
+
+13 
+	~<f˙é.h
+>
+
+14 
+	~<ãrmios.h
+>
+
+15 
+	~<°dio.h
+>
+
+16 
+	#BAUDRATE
+ 
+B115200
+
+
+	)
+
+17 
+	#UART_DEVICE
+ "/dev/âyS0"
+
+	)
+
+19 
+	#FALSE
+ -1
+
+	)
+
+20 
+	#TRUE
+ 0
+
+	)
+
+28 
+	g•ìd_¨r
+[] = {
+B115200
+, 
+B38400
+, 
+B19200
+, 
+B9600
+, 
+B4800
+, 
+B2400
+, 
+B1200
+, 
+B300
+,
+
+29 
+B115200
+, 
+B38400
+, 
+B19200
+, 
+B9600
+, 
+B4800
+, 
+B2400
+, 
+B1200
+, 
+B300
+, };
+
+30 
+	g«me_¨r
+[] = {115200, 38400, 19200, 9600, 4800, 2400, 1200, 300,
+
+32 
+	$£t_•ìd
+(
+fd
+, 
+•ìd
+){
+
+33 
+i
+;
+
+34 
+°©us
+;
+
+35 
+ãrmios
+ 
+O±
+;
+
+36 
+	`tcgë©å
+(
+fd
+, &
+O±
+);
+
+37  
+i
+0; i < (
+•ìd_¨r
+) / (); i++ ) {
+
+38 i‡(
+•ìd
+ =
+«me_¨r
+[
+i
+]) {
+
+39 
+	`tcÊush
+(
+fd
+, 
+TCIOFLUSH
+);
+
+40 
+	`cf£ti•ìd
+(&
+O±
+, 
+•ìd_¨r
+[
+i
+]);
+
+41 
+	`cf£to•ìd
+(&
+O±
+, 
+•ìd_¨r
+[
+i
+]);
+
+42 
+°©us
+ = 
+	`tc£èâr
+(
+fd
+, 
+TCSANOW
+, &
+O±
+);
+
+43 i‡(
+°©us
+ != 0) {
+
+44 
+	`≥º‹
+("tcsetattr fd1");
+
+47 
+	`tcÊush
+(
+fd
+,
+TCIOFLUSH
+);
+
+50 
+	}
+}
+
+60 
+	$£t_P¨ôy
+(
+fd
+,
+d©abôs
+,
+°›bôs
+,
+∑rôy
+)
+
+62 
+ãrmios
+ 
+›ti⁄s
+;
+
+63 i‡–
+	`tcgë©å
+–
+fd
+,&
+›ti⁄s
+ ) != 0 ) {
+
+64 
+	`≥º‹
+("SetupSerial 1");
+
+65 (
+FALSE
+);
+
+67 
+›ti⁄s
+.
+c_cÊag
+ &~
+CSIZE
+;
+
+68 
+d©abôs
+)
+
+71 
+›ti⁄s
+.
+c_cÊag
+ |
+CS7
+;
+
+74 
+›ti⁄s
+.
+c_cÊag
+ |
+CS8
+;
+
+77 
+	`Ârötf
+(
+°dîr
+,"Unsuµ‹ãd d©®size\n");  (
+FALSE
+);
+
+79 
+∑rôy
+)
+
+83 
+›ti⁄s
+.
+c_cÊag
+ &~
+PARENB
+;
+
+84 
+›ti⁄s
+.
+c_iÊag
+ &~
+INPCK
+;
+
+88 
+›ti⁄s
+.
+c_cÊag
+ |(
+PARODD
+ | 
+PARENB
+);
+
+89 
+›ti⁄s
+.
+c_iÊag
+ |
+INPCK
+;
+
+93 
+›ti⁄s
+.
+c_cÊag
+ |
+PARENB
+;
+
+94 
+›ti⁄s
+.
+c_cÊag
+ &~
+PARODD
+;
+
+95 
+›ti⁄s
+.
+c_iÊag
+ |
+INPCK
+;
+
+99 
+›ti⁄s
+.
+c_cÊag
+ &~
+PARENB
+;
+
+100 
+›ti⁄s
+.
+c_cÊag
+ &~
+CSTOPB
+;;
+
+102 
+	`Ârötf
+(
+°dîr
+,"UnsupportedÖarity\n");
+
+103  (
+FALSE
+);
+
+106 
+°›bôs
+)
+
+109 
+›ti⁄s
+.
+c_cÊag
+ &~
+CSTOPB
+;
+
+112 
+›ti⁄s
+.
+c_cÊag
+ |
+CSTOPB
+;
+
+115 
+	`Ârötf
+(
+°dîr
+,"Unsupported stop bits\n");
+
+116  (
+FALSE
+);
+
+119 i‡(
+∑rôy
+ != 'n')
+
+120 
+›ti⁄s
+.
+c_iÊag
+ |
+INPCK
+;
+
+121 
+	`tcÊush
+(
+fd
+,
+TCIFLUSH
+);
+
+122 
+›ti⁄s
+.
+c_cc
+[
+VTIME
+] = 150;
+
+123 
+›ti⁄s
+.
+c_cc
+[
+VMIN
+] = 0;
+
+124 i‡(
+	`tc£èâr
+(
+fd
+,
+TCSANOW
+,&
+›ti⁄s
+) != 0)
+
+126 
+	`≥º‹
+("SetupSerial 3");
+
+127  (
+FALSE
+);
+
+129 
+›ti⁄s
+.
+c_lÊag
+ &~(
+ICANON
+ | 
+ECHO
+ | 
+ECHOE
+ | 
+ISIG
+);
+
+130 
+›ti⁄s
+.
+c_oÊag
+ &~
+OPOST
+;
+
+131  (
+TRUE
+);
+
+132 
+	}
+}
+
+136 
+	$maö
+(
+¨gc
+, *
+¨gv
+[])
+
+139 
+fd
+, 
+c
+=0, 
+ªs
+;
+
+141 
+buf
+[256];
+
+143 
+	`¥ötf
+("Start...\n");
+
+144 
+fd
+ = 
+	`›í
+(
+UART_DEVICE
+, 
+O_RDWR
+);
+
+146 i‡(
+fd
+ < 0) {
+
+147 
+	`≥º‹
+(
+UART_DEVICE
+);
+
+148 
+	`exô
+(1);
+
+151 
+	`¥ötf
+("Open...\n");
+
+152 
+	`£t_•ìd
+(
+fd
+,115200);
+
+153 i‡(
+	`£t_P¨ôy
+(
+fd
+,8,1,'N'Ë=
+FALSE
+) {
+
+154 
+	`¥ötf
+("Set Parity Error\n");
+
+155 
+	`exô
+ (0);
+
+158 
+	`¥ötf
+("Reading...\n");
+
+160 
+ªs
+ = 
+	`ªad
+(
+fd
+, 
+buf
+, 255);
+
+162 if(
+ªs
+==0)
+
+164 
+buf
+[
+ªs
+]=0;
+
+166 
+	`¥ötf
+("%s", 
+buf
+);
+
+168 i‡(
+buf
+[0] == 0x0d)
+
+169 
+	`¥ötf
+("\n");
+
+171 i‡(
+buf
+[0] == '@') ;
+
+174 
+	`¥ötf
+("Close...\n");
+
+175 
+	`˛o£
+(
+fd
+);
+
+178 
+	}
+}
+
+	@setSpeed.c
+
+8 
+	~<°dio.h
+>
+
+10 
+	~<sys/ty≥s.h
+>
+
+12 
+	~<sys/°©.h
+>
+
+13 
+	~<f˙é.h
+>
+
+14 
+	~<ãrmios.h
+>
+
+15 
+	~<°dio.h
+>
+
+16 
+	#BAUDRATE
+ 
+B115200
+
+
+	)
+
+17 
+	#UART_DEVICE
+ "/dev/âyS0"
+
+	)
+
+19 
+	#FALSE
+ -1
+
+	)
+
+20 
+	#TRUE
+ 0
+
+	)
+
+28 
+	g•ìd_¨r
+[] = {
+B115200
+, 
+B38400
+, 
+B19200
+, 
+B9600
+, 
+B4800
+, 
+B2400
+, 
+B1200
+, 
+B300
+,
+
+29 
+B115200
+, 
+B38400
+, 
+B19200
+, 
+B9600
+, 
+B4800
+, 
+B2400
+, 
+B1200
+, 
+B300
+, };
+
+30 
+	g«me_¨r
+[] = {115200, 38400, 19200, 9600, 4800, 2400, 1200, 300,
+
+32 
+	$£t_•ìd
+(
+fd
+, 
+•ìd
+){
+
+33 
+i
+;
+
+34 
+°©us
+;
+
+35 
+ãrmios
+ 
+O±
+;
+
+36 
+	`tcgë©å
+(
+fd
+, &
+O±
+);
+
+37  
+i
+0; i < (
+•ìd_¨r
+) / (); i++ ) {
+
+38 i‡(
+•ìd
+ =
+«me_¨r
+[
+i
+]) {
+
+39 
+	`tcÊush
+(
+fd
+, 
+TCIOFLUSH
+);
+
+40 
+	`cf£ti•ìd
+(&
+O±
+, 
+•ìd_¨r
+[
+i
+]);
+
+41 
+	`cf£to•ìd
+(&
+O±
+, 
+•ìd_¨r
+[
+i
+]);
+
+42 
+°©us
+ = 
+	`tc£èâr
+(
+fd
+, 
+TCSANOW
+, &
+O±
+);
+
+43 i‡(
+°©us
+ != 0) {
+
+44 
+	`≥º‹
+("tcsetattr fd1");
+
+47 
+	`tcÊush
+(
+fd
+,
+TCIOFLUSH
+);
+
+50 
+	}
+}
+
+60 
+	$£t_P¨ôy
+(
+fd
+,
+d©abôs
+,
+°›bôs
+,
+∑rôy
+)
+
+62 
+ãrmios
+ 
+›ti⁄s
+;
+
+63 i‡–
+	`tcgë©å
+–
+fd
+,&
+›ti⁄s
+ ) != 0 ) {
+
+64 
+	`≥º‹
+("SetupSerial 1");
+
+65 (
+FALSE
+);
+
+67 
+›ti⁄s
+.
+c_cÊag
+ &~
+CSIZE
+;
+
+68 
+d©abôs
+)
+
+71 
+›ti⁄s
+.
+c_cÊag
+ |
+CS7
+;
+
+74 
+›ti⁄s
+.
+c_cÊag
+ |
+CS8
+;
+
+77 
+	`Ârötf
+(
+°dîr
+,"Unsuµ‹ãd d©®size\n");  (
+FALSE
+);
+
+79 
+∑rôy
+)
+
+83 
+›ti⁄s
+.
+c_cÊag
+ &~
+PARENB
+;
+
+84 
+›ti⁄s
+.
+c_iÊag
+ &~
+INPCK
+;
+
+88 
+›ti⁄s
+.
+c_cÊag
+ |(
+PARODD
+ | 
+PARENB
+);
+
+89 
+›ti⁄s
+.
+c_iÊag
+ |
+INPCK
+;
+
+93 
+›ti⁄s
+.
+c_cÊag
+ |
+PARENB
+;
+
+94 
+›ti⁄s
+.
+c_cÊag
+ &~
+PARODD
+;
+
+95 
+›ti⁄s
+.
+c_iÊag
+ |
+INPCK
+; }
+	}
+}
+
+100 
+›ti⁄s
+.
+c_cÊag
+ &~
+PARENB
+;
+
+101 
+	g›ti⁄s
+.
+	gc_cÊag
+ &~
+CSTOPB
+;;
+
+103 
+Ârötf
+(
+°dîr
+,"UnsupportedÖarity\n");
+
+104  (
+	gFALSE
+);
+
+107 
+°›bôs
+)
+
+110 
+›ti⁄s
+.
+c_cÊag
+ &~
+CSTOPB
+;
+
+113 
+›ti⁄s
+.
+c_cÊag
+ |
+CSTOPB
+;
+
+116 
+	`Ârötf
+(
+°dîr
+,"Unsupported stop bits\n");
+
+117  (
+FALSE
+);
+
+118 
+	}
+}
+
+120 i‡(
+	g∑rôy
+ != 'n')
+
+121 
+›ti⁄s
+.
+c_iÊag
+ |
+INPCK
+;
+
+122 
+tcÊush
+(
+fd
+,
+TCIFLUSH
+);
+
+123 
+	g›ti⁄s
+.
+	gc_cc
+[
+VTIME
+] = 150;
+
+124 
+	g›ti⁄s
+.
+	gc_cc
+[
+VMIN
+] = 0;
+
+125 i‡(
+tc£èâr
+(
+fd
+,
+TCSANOW
+,&
+›ti⁄s
+) != 0)
+
+127 
+≥º‹
+("SetupSerial 3");
+
+128  (
+	gFALSE
+);
+
+130 
+	g›ti⁄s
+.
+	gc_lÊag
+ &~(
+ICANON
+ | 
+ECHO
+ | 
+ECHOE
+ | 
+ISIG
+);
+
+131 
+	g›ti⁄s
+.
+	gc_oÊag
+ &~
+OPOST
+;
+
+132  (
+	gTRUE
+);
+
+137 
+	$maö
+(
+¨gc
+, *
+¨gv
+[])
+
+140 
+fd
+, 
+c
+=0, 
+ªs
+;
+
+142 
+buf
+[256];
+
+144 
+	`¥ötf
+("Start...\n");
+
+145 
+fd
+ = 
+	`›í
+(
+UART_DEVICE
+, 
+O_RDWR
+);
+
+147 i‡(
+fd
+ < 0) {
+
+148 
+	`≥º‹
+(
+UART_DEVICE
+);
+
+149 
+	`exô
+(1);
+
+152 
+	`¥ötf
+("Open...\n");
+
+153 
+	`£t_•ìd
+(
+fd
+,115200);
+
+154 i‡(
+	`£t_P¨ôy
+(
+fd
+,8,1,'N'Ë=
+FALSE
+) {
+
+155 
+	`¥ötf
+("Set Parity Error\n");
+
+156 
+	`exô
+ (0);
+
+159 
+	`¥ötf
+("Reading...\n");
+
+161 
+ªs
+ = 
+	`ªad
+(
+fd
+, 
+buf
+, 255);
+
+163 if(
+ªs
+==0)
+
+165 
+buf
+[
+ªs
+]=0;
+
+167 
+	`¥ötf
+("%s", 
+buf
+);
+
+169 i‡(
+buf
+[0] == 0x0d)
+
+170 
+	`¥ötf
+("\n");
+
+172 i‡(
+buf
+[0] == '@') ;
+
+175 
+	`¥ötf
+("Close...\n");
+
+176 
+	`˛o£
+(
+fd
+);
+
+179 
+	}
+}
+
+	@
+1
+.
+0
+3
+30
+connect.c
+serCom.c
+setSpeed.c
